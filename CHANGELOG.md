@@ -1,8 +1,8 @@
 # Changelog
 
-## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/System.Device.UsbClient/tree/HEAD)
+## [v1.0.3](https://github.com/nanoframework/System.Device.UsbClient/tree/v1.0.3) (2022-10-04)
 
-[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/b4ea21beb75b7f6cf89b9370cbe4c98357648e78...HEAD)
+[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/b4ea21beb75b7f6cf89b9370cbe4c98357648e78...v1.0.3)
 
 **Implemented enhancements:**
 
