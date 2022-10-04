@@ -33,9 +33,14 @@ namespace System.Device.UsbClient
         /// <exception cref="PlatformNotSupportedException">This is not support in .NET nanoFramework.</exception>
         public override long Position { get => throw new PlatformNotSupportedException(); set => throw new PlatformNotSupportedException(); }
 
-        internal UsbStream(string name)
+        internal UsbStream(
+            Guid classId,
+            string name)
         {
-            _streamIndex = NativeOpen(name);
+            // need to convert GUID to proper format to help processing at native end
+            _streamIndex = NativeOpen(
+                $"{{{classId}}}",
+                name);
 
             _disposed = false;
         }
@@ -106,7 +111,7 @@ namespace System.Device.UsbClient
         private extern void NativeClose();
 
         [MethodImpl(MethodImplOptions.InternalCall)]
-        private extern int NativeOpen(string name);
+        private extern int NativeOpen(string classId, string name);
 
         [MethodImpl(MethodImplOptions.InternalCall)]
         private extern void NativeWrite(byte[] buffer, int offset, int count);
