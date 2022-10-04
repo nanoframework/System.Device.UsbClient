@@ -1,0 +1,94 @@
+# Copyright (c) .NET Foundation and Contributors
+# See LICENSE file in the project root for full license information.
+
+trigger:
+  branches:
+    include:
+      - main
+      - develop
+      - release-*
+  paths:
+    exclude:
+      - .github_changelog_generator
+      - .gitignore
+      - CHANGELOG.md
+      - CODE_OF_CONDUCT.md
+      - LICENSE.md
+      - README.md
+      - NuGet.Config
+      - assets/*
+      - config/*
+      - .github/*
+  tags:
+    include: 
+      - v*
+
+# PR always trigger build
+pr:
+  autoCancel: true
+
+# add nf-tools repo to resources (for Azure Pipelines templates)
+resources:
+  repositories:
+    - repository: templates
+      type: github
+      name: nanoframework/nf-tools
+      endpoint: nanoframework
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  DOTNET_NOLOGO: true
+  solution: 'System.Device.UsbStream.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  nugetPackageName: 'System.Device.UsbStream'
+
+steps:
+
+# step from template @ nf-tools repo
+# build steps only
+- template: azure-pipelines-templates/class-lib-build-only.yml@templates  
+  parameters:
+    sonarCloudProject: 'nanoframework_System.Device.UsbStream'
+    runUnitTests: false
+
+# package steps
+- template: azure-pipelines-templates/class-lib-package.yml@templates  
+  parameters:
+    nugetPackageName: 'nanoFramework.System.Device.UsbStream'
+
+- template: azure-pipelines-templates/class-lib-publish.yml@templates  
+
+# create GitHub release build from main branch
+- task: GithubRelease@1
+  condition: >-
+    and(
+      succeeded(),
+      eq(variables['System.PullRequest.PullRequestId'], ''),
+      startsWith(variables['Build.SourceBranch'], 'refs/heads/main'),
+      not(contains(variables['Build.SourceBranch'], 'preview')),
+      eq(variables['StartReleaseCandidate'], false)
+    )
+  displayName: Create/Update GitHub release
+  inputs:
+    action: edit
+    gitHubConnection: 'github.com_nano-$(System.TeamProject)'
+    tagSource: userSpecifiedTag
+    tag: v$(MY_NUGET_VERSION)
+    title: '$(nugetPackageName) Library v$(MY_NUGET_VERSION)'
+    releaseNotesSource: inline
+    releaseNotesInline: 'Check the [changelog]($(Build.Repository.Uri)/blob/$(Build.SourceBranchName)/CHANGELOG.md).<br><br><h4>Install from NuGet</h4><br>The following NuGet packages are available for download from this release:<br>:package: [.NET](https://www.nuget.org/packages/nanoFramework.System.Device.UsbStream/$(MY_NUGET_VERSION)) v$(MY_NUGET_VERSION).<br>:package: [UsbStream](https://www.nuget.org/packages/nanoFramework.System.Device.UsbStream/$(MY_NUGET_VERSION)) v$(MY_NUGET_VERSION)'
+    assets: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+    assetUploadMode: replace
+    isPreRelease: false
+    addChangeLog: false
+
+# step from template @ nf-tools repo
+# report error
+- template: azure-pipelines-templates/discord-webhook-task.yml@templates  
+  parameters:
+    status: 'failure'
+    webhookUrl: '$(DiscordWebhook)'
+    message: ''
