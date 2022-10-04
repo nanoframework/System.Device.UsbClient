@@ -43,6 +43,7 @@ variables:
   solution: 'System.Device.UsbClient.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  nugetPackageName: 'System.Device.UsbClient'
 
 steps:
 
