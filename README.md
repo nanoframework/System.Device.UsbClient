@@ -10,7 +10,7 @@
 
 | Component | Build Status | NuGet Package |
 |:-|---|---|
-| System.Device.UsbClient | [![Build Status](https://dev.azure.com/nanoframework/System.Device.UsbClient/_apis/build/status/System.Device.UsbClient?branchName=main)](https://dev.azure.com/nanoframework/System.Device.UsbClient/_build/latest?definitionId=99&branchName=main) | [![NuGet](https://img.shields.io/nuget/v/System.Device.UsbClient.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/System.Device.UsbClient/) |
+| System.Device.UsbStream | [![Build Status](https://dev.azure.com/nanoframework/System.Device.UsbClient/_apis/build/status/System.Device.UsbClient?branchName=main)](https://dev.azure.com/nanoframework/System.Device.UsbClient/_build/latest?definitionId=99&branchName=main) | [![NuGet](https://img.shields.io/nuget/v/nanoFramework.System.Device.UsbStream.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/nanoFramework.System.Device.UsbStream/) |
 
 ## Usage
 
