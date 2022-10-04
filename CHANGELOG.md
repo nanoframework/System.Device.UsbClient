@@ -1,5 +1,17 @@
 # Changelog
 
+## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/System.Device.UsbClient/tree/HEAD)
+
+[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.5...HEAD)
+
+**Implemented enhancements:**
+
+- UsbStream now accepts GUID with device interface class [\#2](https://github.com/nanoframework/System.Device.UsbClient/pull/2)
+
+## [v1.0.5](https://github.com/nanoframework/System.Device.UsbClient/tree/v1.0.5) (2022-10-04)
+
+[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.3...v1.0.5)
+
 ## [v1.0.3](https://github.com/nanoframework/System.Device.UsbClient/tree/v1.0.3) (2022-10-04)
 
 [Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/b4ea21beb75b7f6cf89b9370cbe4c98357648e78...v1.0.3)
