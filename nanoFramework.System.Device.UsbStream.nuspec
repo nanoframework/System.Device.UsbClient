@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>nanoFramework.System.Device.UsbStream</id>
+    <version>$version$</version>
+    <title>nanoFramework.System.Device.UsbStream</title>
+    <authors>nanoframework</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="file">LICENSE.md</license>
+    <releaseNotes>
+    </releaseNotes>
+    <readme>docs\README.md</readme>
+    <developmentDependency>false</developmentDependency>
+    <projectUrl>https://github.com/nanoframework/System.Device.UsbClient</projectUrl>
+    <icon>images\nf-logo.png</icon>
+    <repository type="git" url="https://github.com/nanoframework/System.Device.UsbClient" commit="$commit$" />
+    <copyright>Copyright (c) .NET Foundation and Contributors</copyright>
+    <description>This package includes the System.Device.UsbStream assembly for .NET nanoFramework C# projects.
+This package requires a target with System.Device.UsbStream v$nativeVersion$ (checksum $checksum$).</description>
+    <tags>nanoFramework C# csharp netmf netnf nanoFramework.Device.UsbClient</tags>
+    <dependencies>
+		<dependency id="nanoFramework.CoreLibrary" version="1.12.0" />
+		<dependency id="nanoFramework.System.IO.Streams" version="1.1.15" />
+	</dependencies>
+  </metadata>
+  <files>
+    <file src="System.Device.UsbStream\bin\Release\System.Device.UsbStream.dll" target="lib\System.Device.UsbStream.dll" />
+    <file src="System.Device.UsbStream\bin\Release\System.Device.UsbStream.pdb" target="lib\System.Device.UsbStream.pdb" />
+    <file src="System.Device.UsbStream\bin\Release\System.Device.UsbStream.pdbx" target="lib\System.Device.UsbStream.pdbx" />
+    <file src="System.Device.UsbStream\bin\Release\System.Device.UsbStream.pe" target="lib\System.Device.UsbStream.pe" />
+    <file src="System.Device.UsbStream\bin\Release\System.Device.UsbStream.xml" target="lib\System.Device.UsbStream.xml" />
+    <file src="assets\readme.txt" target="" />
+    <file src="README.md" target="docs\" />
+    <file src="assets\nf-logo.png" target="images" />
+    <file src="LICENSE.md" target="" />
+  </files>
+</package>

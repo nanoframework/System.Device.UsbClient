@@ -40,10 +40,9 @@ pool:
 
 variables:
   DOTNET_NOLOGO: true
-  solution: 'System.Device.UsbStream.sln'
+  solution: 'System.Device.UsbClient.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  nugetPackageName: 'System.Device.UsbStream'
 
 steps:
 
@@ -51,7 +50,7 @@ steps:
 # build steps only
 - template: azure-pipelines-templates/class-lib-build-only.yml@templates  
   parameters:
-    sonarCloudProject: 'nanoframework_System.Device.UsbStream'
+    sonarCloudProject: 'nanoframework_System.Device.UsbClient'
     runUnitTests: false
 
 # package steps
