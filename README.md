@@ -14,6 +14,34 @@
 
 ## Usage
 
+### USB Stream
+
+`UsbStream` class provides a seamless interface to a stream that can read from and write to an USB Device that's enumerated as a WinUSB device.
+This allows shipping your .NET nanoFramework device as an USB device without the need for any INF file or specific driver instalation.
+
+#### Creating an UsbStream
+
+Creating an `UsbStream` requries 2 parameters: a `Guid` that will be used as the Device Interface ID and a `string` which will be used as the device description for the USB device.
+
+```csharp
+private static Guid deviceInterfaceId = new Guid("9e48651c-fa68-4b39-8731-1ee84659aac5");
+private static string deviceDescription = "nanoDevice";
+
+// create USB Stream
+var usbStream = UsbClient.CreateUsbStream(deviceInterfaceId, deviceDescription);
+```
+
+#### Writing to the `UsbStream`
+
+To write to the `UsbStream` just call the `Write()` method just like any other .NET stream. Like this:
+
+```csharp
+// buffer with dummy data 
+var bufer = new byte[] { 1, 2, 3 };
+
+usbStream.Write(bufer, 0, bufer.Length);
+```
+
 ## Feedback and documentation
 
 For documentation, providing feedback, issues and finding out how to contribute please refer to the [Home repo](https://github.com/nanoframework/Home).
