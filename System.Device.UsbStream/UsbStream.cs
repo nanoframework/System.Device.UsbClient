@@ -68,26 +68,40 @@ namespace System.Device.UsbClient
 
         /// <inheritdoc/>
         /// <exception cref="ObjectDisposedException">This <see cref="UsbStream"/> has been disposed.</exception>
-        public override int Read(byte[] buffer, int offset, int count)
+        /// <exception cref="InvalidOperationException">If the USB device is not connected.</exception>
+        /// <remarks>Device connectivity can be checked with </remarks>
+        public override int Read(
+            byte[] buffer,
+            int offset,
+            int count)
         {
             if (_disposed)
             {
                 throw new ObjectDisposedException();
             }
 
-            return NativeRead(buffer, offset, count);
+            return NativeRead(
+                buffer,
+                offset,
+                count);
         }
 
         /// <inheritdoc/>
         /// <exception cref="NotImplementedException"></exception>
+        /// <exception cref="InvalidOperationException">If the USB device is not connected.</exception>
         public override int Read(SpanByte buffer)
         {
-            return Read(buffer.ToArray(), 0, buffer.Length);
+            return Read(
+                buffer.ToArray(),
+                0,
+                buffer.Length);
         }
 
         /// <inheritdoc/>
         /// <exception cref="PlatformNotSupportedException">This is not support in .NET nanoFramework.</exception>
-        public override long Seek(long offset, SeekOrigin origin) => throw new NotSupportedException();
+        public override long Seek(
+            long offset,
+            SeekOrigin origin) => throw new NotSupportedException();
 
         /// <inheritdoc/>
         /// <exception cref="PlatformNotSupportedException">This is not support in .NET nanoFramework.</exception>
@@ -95,14 +109,17 @@ namespace System.Device.UsbClient
 
         /// <inheritdoc/>
         /// <exception cref="ObjectDisposedException">This <see cref="UsbStream"/> has been disposed.</exception>
-        public override void Write(byte[] buffer, int offset, int count)
+        /// <exception cref="InvalidOperationException">If the USB device is not connected.</exception>
+        public override void Write(
+            byte[] buffer,
+            int offset,
+            int count)
         {
-            if (_disposed)
-            {
-                throw new ObjectDisposedException();
-            }
-
-            NativeWrite(buffer, offset, count);
+            // developer note: check for "disposed" it's carried out at native code
+            NativeWrite(
+                buffer,
+                offset,
+                count);
         }
 
         #region Native Methods
