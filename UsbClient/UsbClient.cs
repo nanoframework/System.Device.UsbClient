@@ -21,7 +21,7 @@ namespace System.Device.UsbClient
         /// <summary>
         /// Gets a value indicating whether the USB device is connected or not.
         /// </summary>
-        public extern bool IsConnected 
+        public extern bool IsConnected
         {
             [MethodImpl(MethodImplOptions.InternalCall)]
             get; 
@@ -31,8 +31,8 @@ namespace System.Device.UsbClient
         {
             UsbDeviceEventListener useDeviceEventListener = new ();
 
-            EventSink.AddEventProcessor(EventCategory.Network, useDeviceEventListener);
-            EventSink.AddEventListener(EventCategory.Network, useDeviceEventListener);
+            EventSink.AddEventProcessor(EventCategory.Usb, useDeviceEventListener);
+            EventSink.AddEventListener(EventCategory.Usb, useDeviceEventListener);
         }
 
         /// <summary>
