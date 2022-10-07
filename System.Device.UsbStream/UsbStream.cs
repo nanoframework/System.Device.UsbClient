@@ -1,8 +1,6 @@
 ﻿// Copyright (c) .NET Foundation and Contributors
 // See LICENSE file in the project root for full license information.
 
-using System;
-using System.Collections;
 using System.IO;
 using System.Runtime.CompilerServices;
 
