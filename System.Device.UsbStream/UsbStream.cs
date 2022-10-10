@@ -3,6 +3,7 @@
 
 using System.IO;
 using System.Runtime.CompilerServices;
+using System.Threading;
 
 namespace System.Device.UsbClient
 {
@@ -11,8 +12,13 @@ namespace System.Device.UsbClient
     /// </summary>
     public sealed class UsbStream : System.IO.Stream
     {
+#pragma warning disable IDE0052 // required at native code
         private readonly int _streamIndex;
+#pragma warning restore IDE0052 // Remove unread private members
+
         private bool _disposed;
+        private int _writeTimeout = Timeout.Infinite;
+        private int _readTimeout = Timeout.Infinite;
 
         /// <inheritdoc/>
         public override bool CanRead => true;
@@ -30,6 +36,40 @@ namespace System.Device.UsbClient
         /// <inheritdoc/>
         /// <exception cref="PlatformNotSupportedException">This is not support in .NET nanoFramework.</exception>
         public override long Position { get => throw new PlatformNotSupportedException(); set => throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// Gets or sets the number of milliseconds before a time-out occurs when a read operation does not finish.
+        /// </summary>
+        /// <exception cref="IOException">If the USB device is not connected.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">The read time-out value is less than zero and not equal to <see cref="Timeout.Infinite"/>.</exception>
+        public override int ReadTimeout
+        {
+            get => _readTimeout;
+
+            set
+            {
+                CheckValidTimeout(value);
+
+                _readTimeout = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the number of milliseconds before a time-out occurs when a write operation does not finish.
+        /// </summary>
+        /// <exception cref="IOException">If the USB device is not connected.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">The read time-out value is less than zero and not equal to <see cref="Timeout.Infinite"/>.</exception>
+        public override int WriteTimeout
+        {
+            get => _writeTimeout;
+
+            set
+            {
+                CheckValidTimeout(value);
+
+                _writeTimeout = value;
+            }
+        }
 
         internal UsbStream(
             Guid classId,
@@ -118,6 +158,14 @@ namespace System.Device.UsbClient
                 buffer,
                 offset,
                 count);
+        }
+
+        private static void CheckValidTimeout(int value)
+        {
+            if (value < 0 && value != Timeout.Infinite)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
         }
 
         #region Native Methods
