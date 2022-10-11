@@ -2,7 +2,15 @@
 
 ## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/System.Device.UsbClient/tree/HEAD)
 
-[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.7...HEAD)
+[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.12...HEAD)
+
+**Implemented enhancements:**
+
+- Remove dispose check from Read\(\) [\#5](https://github.com/nanoframework/System.Device.UsbClient/pull/5)
+
+## [v1.0.12](https://github.com/nanoframework/System.Device.UsbClient/tree/v1.0.12) (2022-10-11)
+
+[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.7...v1.0.12)
 
 **Implemented enhancements:**
 
