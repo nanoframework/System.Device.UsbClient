@@ -113,11 +113,6 @@ namespace System.Device.UsbClient
             int offset,
             int count)
         {
-            if (_disposed)
-            {
-                throw new ObjectDisposedException();
-            }
-
             return NativeRead(
                 buffer,
                 offset,
