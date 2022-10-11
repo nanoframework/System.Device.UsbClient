@@ -2,7 +2,15 @@
 
 ## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/System.Device.UsbClient/tree/HEAD)
 
-[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.12...HEAD)
+[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.14...HEAD)
+
+**Documentation and other chores:**
+
+- Rename namespace for coherence [\#6](https://github.com/nanoframework/System.Device.UsbClient/pull/6)
+
+## [v1.0.14](https://github.com/nanoframework/System.Device.UsbClient/tree/v1.0.14) (2022-10-11)
+
+[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.12...v1.0.14)
 
 **Implemented enhancements:**
 
