@@ -2,7 +2,16 @@
 
 ## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/System.Device.UsbClient/tree/HEAD)
 
-[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.5...HEAD)
+[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.7...HEAD)
+
+**Implemented enhancements:**
+
+- Add read and write timeout properties [\#4](https://github.com/nanoframework/System.Device.UsbClient/pull/4)
+- Update API [\#3](https://github.com/nanoframework/System.Device.UsbClient/pull/3)
+
+## [v1.0.7](https://github.com/nanoframework/System.Device.UsbClient/tree/v1.0.7) (2022-10-04)
+
+[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.5...v1.0.7)
 
 **Implemented enhancements:**
 
