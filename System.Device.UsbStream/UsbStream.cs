@@ -5,7 +5,7 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading;
 
-namespace System.Device.UsbClient
+namespace System.Device.Usb
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="UsbStream"/> class.

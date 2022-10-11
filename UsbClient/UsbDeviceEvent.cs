@@ -3,7 +3,7 @@
 
 using nanoFramework.Runtime.Events;
 
-namespace System.Device.UsbClient
+namespace System.Device.Usb
 {
     internal class UsbDeviceEvent : BaseEvent
     {

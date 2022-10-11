@@ -4,7 +4,7 @@
 using System.Runtime.CompilerServices;
 using nanoFramework.Runtime.Events;
 
-namespace System.Device.UsbClient
+namespace System.Device.Usb
 {
     /// <summary>
     /// Indicates a change in the connection state of the USB device.
