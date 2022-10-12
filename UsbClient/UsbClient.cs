@@ -21,7 +21,7 @@ namespace System.Device.Usb
         /// <summary>
         /// Gets a value indicating whether the USB device is connected or not.
         /// </summary>
-        public extern bool IsConnected
+        public static extern bool IsConnected
         {
             [MethodImpl(MethodImplOptions.InternalCall)]
             get; 
