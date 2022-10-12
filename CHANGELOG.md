@@ -2,7 +2,15 @@
 
 ## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/System.Device.UsbClient/tree/HEAD)
 
-[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.14...HEAD)
+[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.16...HEAD)
+
+**Documentation and other chores:**
+
+- UsbClient.IsConnected is now static [\#7](https://github.com/nanoframework/System.Device.UsbClient/pull/7)
+
+## [v1.0.16](https://github.com/nanoframework/System.Device.UsbClient/tree/v1.0.16) (2022-10-11)
+
+[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.14...v1.0.16)
 
 **Documentation and other chores:**
 
