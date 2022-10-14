@@ -4,9 +4,12 @@
 namespace System.Device.Usb
 {
     /// <summary>
-    /// Provides static methods for the creation of USB client instances.
+    /// Provides data for the <see cref="UsbStream.DataReceived"/> event.
     /// </summary>
-    public partial class UsbClient
+    public class UsbStreamDataReceivedEventArgs : EventArgs
     {
+        internal UsbStreamDataReceivedEventArgs()
+        {
+        }
     }
 }
