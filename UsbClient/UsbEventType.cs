@@ -6,7 +6,8 @@ namespace System.Device.Usb
     internal enum UsbEventType : byte
     {
         Invalid = 0,
-        DeviceConnected = 1,
-        DeviceDisconnected = 2
+        DeviceConnected,
+        DeviceDisconnected,
+        DataAvailable
     }
 }

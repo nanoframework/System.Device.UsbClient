@@ -9,6 +9,7 @@
     <Import_RootNamespace>System.Device.Usb</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)UsbDeviceConnectionChangedEventHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UsbDeviceEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DeviceConnectionEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UsbClient.cs" />
