@@ -130,6 +130,7 @@ namespace System.Device.Usb
 
             set
             {
+                // backing field will be updated in native code
                 NativeReceivedBytesThreshold(value);
             }
         }
