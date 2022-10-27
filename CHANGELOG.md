@@ -2,7 +2,15 @@
 
 ## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/System.Device.UsbClient/tree/HEAD)
 
-[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.28...HEAD)
+[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.30...HEAD)
+
+**Documentation and other chores:**
+
+- Update 1 NuGet dependencies [\#14](https://github.com/nanoframework/System.Device.UsbClient/pull/14)
+
+## [v1.0.30](https://github.com/nanoframework/System.Device.UsbClient/tree/v1.0.30) (2022-10-26)
+
+[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.28...v1.0.30)
 
 **Documentation and other chores:**
 
