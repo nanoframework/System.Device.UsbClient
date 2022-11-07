@@ -2,7 +2,15 @@
 
 ## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/System.Device.UsbClient/tree/HEAD)
 
-[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.30...HEAD)
+[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.32...HEAD)
+
+**Implemented enhancements:**
+
+- Add Write method with byte array [\#15](https://github.com/nanoframework/System.Device.UsbClient/pull/15)
+
+## [v1.0.32](https://github.com/nanoframework/System.Device.UsbClient/tree/v1.0.32) (2022-10-27)
+
+[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.30...v1.0.32)
 
 **Documentation and other chores:**
 
