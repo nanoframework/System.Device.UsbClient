@@ -249,6 +249,19 @@ namespace System.Device.Usb
                 count);
         }
 
+        /// <inheritdoc/>
+        /// <exception cref="ObjectDisposedException">This <see cref="UsbStream"/> has been disposed.</exception>
+        /// <exception cref="InvalidOperationException">If the USB device is not connected.</exception>
+        /// <exception cref="TimeoutException">The operation did not complete before the time-out period ended.</exception>
+        public void Write(byte[] buffer)
+        {
+            // developer note: check for "disposed" it's carried out at native code
+            NativeWrite(
+                buffer,
+                0,
+                buffer.Length);
+        }
+
         private static void CheckValidTimeout(int value)
         {
             if (value < 0 && value != Timeout.Infinite)
