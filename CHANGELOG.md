@@ -2,7 +2,15 @@
 
 ## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/System.Device.UsbClient/tree/HEAD)
 
-[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.32...HEAD)
+[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.34...HEAD)
+
+**Implemented enhancements:**
+
+- Tidy up Read and Write APIs [\#16](https://github.com/nanoframework/System.Device.UsbClient/pull/16)
+
+## [v1.0.34](https://github.com/nanoframework/System.Device.UsbClient/tree/v1.0.34) (2022-11-07)
+
+[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.32...v1.0.34)
 
 **Implemented enhancements:**
 
