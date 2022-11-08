@@ -20,5 +20,5 @@ using System.Runtime.InteropServices;
 /////////////////////////////////////////////////////////////////
 // This attribute is mandatory when building Interop libraries //
 // update this whenever the native assembly signature changes  //
-[assembly: AssemblyNativeVersion("100.0.0.3")]
+[assembly: AssemblyNativeVersion("100.0.0.4")]
 /////////////////////////////////////////////////////////////////

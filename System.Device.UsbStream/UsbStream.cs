@@ -195,33 +195,41 @@ namespace System.Device.Usb
         [MethodImpl(MethodImplOptions.InternalCall)]
         public extern override void Flush();
 
-        /// <inheritdoc/>
+        /// <summary>Reads a number of bytes from the USB device and writes those bytes into a byte array at the specified offset.</summary>
+        /// <param name="buffer">The byte array to write the input to.</param>
+        /// <param name="offset">The <paramref name="offset"/> in <paramref name="buffer"/> at which to write the bytes.</param>
+        /// <param name="count">The maximum number of bytes to read. Fewer bytes are read if <paramref name="count"/> is greater than the number of bytes in the input buffer.</param>
         /// <exception cref="ObjectDisposedException">This <see cref="UsbStream"/> has been disposed.</exception>
         /// <exception cref="InvalidOperationException">If the USB device is not connected.</exception>
         /// <exception cref="TimeoutException">No bytes were available to read.</exception>
+        /// <exception cref="ArgumentNullException">The buffer passed is <see langword="null"/>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">The <paramref name="offset"/> or <paramref name="count"/> parameters are outside a valid region of the <paramref name="buffer"/> being passed. Either <paramref name="offset"/> or <paramref name="count"/> is less than zero.</exception>
+        /// <exception cref="ArgumentException"><paramref name="offset"/> plus <paramref name="count"/> is greater than the length of the <paramref name="buffer"/>.</exception>
         /// <remarks>Device connectivity can be checked with <see cref="IsConnected"/>. </remarks>
-        public override int Read(
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        public extern override int Read(
             byte[] buffer,
             int offset,
-            int count)
-        {
-            return NativeRead(
+            int count);
+
+        /// <summary>Reads a number of bytes from the USB device and writes those bytes into a byte array.</summary>
+        /// <param name="buffer">The byte array to write the input to.</param>
+        /// <exception cref="ObjectDisposedException">This <see cref="UsbStream"/> has been disposed.</exception>
+        /// <exception cref="InvalidOperationException">If the USB device is not connected.</exception>
+        /// <exception cref="TimeoutException">No bytes were available to read.</exception>
+        /// <exception cref="ArgumentNullException">The buffer passed is <see langword="null"/>.</exception>
+        /// <remarks>Device connectivity can be checked with <see cref="IsConnected"/>. </remarks>
+        public int Read(byte[] buffer)
+        { 
+            return Read(
                 buffer,
-                offset,
-                count);
+                0,
+                buffer.Length);
         }
 
         /// <inheritdoc/>
         /// <exception cref="NotImplementedException"></exception>
-        /// <exception cref="InvalidOperationException">If the USB device is not connected.</exception>
-        /// <exception cref="TimeoutException">No bytes were available to read.</exception>
-        public override int Read(SpanByte buffer)
-        {
-            return Read(
-                buffer.ToArray(),
-                0,
-                buffer.Length);
-        }
+        public override int Read(SpanByte buffer) => throw new NotImplementedException();
 
         /// <inheritdoc/>
         /// <exception cref="PlatformNotSupportedException">This is not support in .NET nanoFramework.</exception>
@@ -233,30 +241,30 @@ namespace System.Device.Usb
         /// <exception cref="PlatformNotSupportedException">This is not support in .NET nanoFramework.</exception>
         public override void SetLength(long value) => throw new PlatformNotSupportedException();
 
-        /// <inheritdoc/>
+        /// <summary>Writes a specified number of bytes to the USB device using data from a buffer.</summary>
+        /// <param name="buffer">The byte array that contains the data to write to the USB device.</param>
+        /// <param name="offset">The zero-based byte offset in the <paramref name="buffer"/> parameter at which to begin copying bytes to the USB device.</param>
+        /// <param name="count">The number of bytes to write.</param>
         /// <exception cref="ObjectDisposedException">This <see cref="UsbStream"/> has been disposed.</exception>
         /// <exception cref="InvalidOperationException">If the USB device is not connected.</exception>
         /// <exception cref="TimeoutException">The operation did not complete before the time-out period ended.</exception>
-        public override void Write(
+        /// <exception cref="ArgumentOutOfRangeException">The <paramref name="offset"/> or <paramref name="count"/> parameters are outside a valid region of the <paramref name="buffer"/> being passed. Either <paramref name="offset"/> or <paramref name="count"/> is less than zero.</exception>
+        /// <exception cref="ArgumentException"><paramref name="offset"/> plus <paramref name="count"/> is greater than the length of the <paramref name="buffer"/>.</exception>
+        // developer note: check for "disposed" it's carried out at native code
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        public extern override void Write(
             byte[] buffer,
             int offset,
-            int count)
-        {
-            // developer note: check for "disposed" it's carried out at native code
-            NativeWrite(
-                buffer,
-                offset,
-                count);
-        }
+            int count);
 
-        /// <inheritdoc/>
+        /// <summary>Writes the number of bytes in <paramref name="buffer"/> parameter to the USB device using data from a buffer.</summary>
+        /// <param name="buffer">The byte array that contains the data to write to the USB device.</param>
         /// <exception cref="ObjectDisposedException">This <see cref="UsbStream"/> has been disposed.</exception>
         /// <exception cref="InvalidOperationException">If the USB device is not connected.</exception>
         /// <exception cref="TimeoutException">The operation did not complete before the time-out period ended.</exception>
         public void Write(byte[] buffer)
         {
-            // developer note: check for "disposed" it's carried out at native code
-            NativeWrite(
+            Write(
                 buffer,
                 0,
                 buffer.Length);
@@ -298,12 +306,6 @@ namespace System.Device.Usb
 
         [MethodImpl(MethodImplOptions.InternalCall)]
         private extern int NativeOpen(string classId, string name);
-
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        private extern void NativeWrite(byte[] buffer, int offset, int count);
-
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        private extern int NativeRead(byte[] buffer, int offset, int count);
 
         [MethodImpl(MethodImplOptions.InternalCall)]
         internal extern void NativeReceivedBytesThreshold(int value);
