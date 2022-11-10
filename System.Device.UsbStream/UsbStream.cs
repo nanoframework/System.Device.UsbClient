@@ -25,8 +25,6 @@ namespace System.Device.Usb
         private int _writeTimeout = Timeout.Infinite;
         private int _readTimeout = Timeout.Infinite;
 
-        private int _bufferSize = 256;
-
         /// <summary>
         /// Event occurs when the connection state of the USB device changes.
         /// </summary>
@@ -57,37 +55,6 @@ namespace System.Device.Usb
         /// <inheritdoc/>
         /// <exception cref="PlatformNotSupportedException">This is not support in .NET nanoFramework.</exception>
         public override long Position { get => throw new PlatformNotSupportedException(); set => throw new PlatformNotSupportedException(); }
-
-        /// <summary>
-        /// Gets or sets the size of the <see cref="UsbStream"/> input buffer.
-        /// </summary>
-        /// <value>The size of the input buffer. The default is 256.</value>
-        /// <exception cref="ArgumentOutOfRangeException">The <see cref="ReadBufferSize"/> value is less than or equal to zero.</exception>
-        /// <remarks>
-        /// <para>
-        /// - There is only one work buffer which is used for transmission and reception.
-        /// </para>
-        /// <para>
-        /// - When the <see cref="UsbStream"/> is <see cref="UsbClient.CreateUsbStream(Guid, string)"/> the driver will try to allocate the requested memory for the buffer. On failure to do so, an <see cref="OutOfMemoryException"/> exception will be throw and the <see cref="UsbClient.CreateUsbStream(Guid, string)"/> operation will fail.
-        /// </para>
-        /// </remarks>
-        public int ReadBufferSize
-        {
-            get
-            {
-                return _bufferSize;
-            }
-
-            set
-            {
-                if (value <= 0)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-
-                _bufferSize = value;
-            }
-        }
 
         /// <summary>
         /// Gets or sets the number of milliseconds before a time-out occurs when a read operation does not finish.
@@ -268,9 +235,6 @@ namespace System.Device.Usb
 
         [MethodImpl(MethodImplOptions.InternalCall)]
         private extern int NativeOpen(string classId, string name);
-
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        internal extern void NativeReceivedBytesThreshold(int value);
 
         #endregion
     }
