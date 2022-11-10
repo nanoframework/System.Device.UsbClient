@@ -25,8 +25,6 @@ namespace System.Device.Usb
         private int _writeTimeout = Timeout.Infinite;
         private int _readTimeout = Timeout.Infinite;
 
-        private int _bufferSize = 256;
-
         /// <summary>
         /// Event occurs when the connection state of the USB device changes.
         /// </summary>
@@ -57,37 +55,6 @@ namespace System.Device.Usb
         /// <inheritdoc/>
         /// <exception cref="PlatformNotSupportedException">This is not support in .NET nanoFramework.</exception>
         public override long Position { get => throw new PlatformNotSupportedException(); set => throw new PlatformNotSupportedException(); }
-
-        /// <summary>
-        /// Gets or sets the size of the <see cref="UsbStream"/> input buffer.
-        /// </summary>
-        /// <value>The size of the input buffer. The default is 256.</value>
-        /// <exception cref="ArgumentOutOfRangeException">The <see cref="ReadBufferSize"/> value is less than or equal to zero.</exception>
-        /// <remarks>
-        /// <para>
-        /// - There is only one work buffer which is used for transmission and reception.
-        /// </para>
-        /// <para>
-        /// - When the <see cref="UsbStream"/> is <see cref="UsbClient.CreateUsbStream(Guid, string)"/> the driver will try to allocate the requested memory for the buffer. On failure to do so, an <see cref="OutOfMemoryException"/> exception will be throw and the <see cref="UsbClient.CreateUsbStream(Guid, string)"/> operation will fail.
-        /// </para>
-        /// </remarks>
-        public int ReadBufferSize
-        {
-            get
-            {
-                return _bufferSize;
-            }
-
-            set
-            {
-                if (value <= 0)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-
-                _bufferSize = value;
-            }
-        }
 
         /// <summary>
         /// Gets or sets the number of milliseconds before a time-out occurs when a read operation does not finish.
@@ -170,6 +137,7 @@ namespace System.Device.Usb
         /// <param name="buffer">The byte array to write the input to.</param>
         /// <param name="offset">The <paramref name="offset"/> in <paramref name="buffer"/> at which to write the bytes.</param>
         /// <param name="count">The maximum number of bytes to read. Fewer bytes are read if <paramref name="count"/> is greater than the number of bytes in the input buffer.</param>
+        /// <returns>The number of bytes read.</returns>
         /// <exception cref="ObjectDisposedException">This <see cref="UsbStream"/> has been disposed.</exception>
         /// <exception cref="InvalidOperationException">If the USB device is not connected.</exception>
         /// <exception cref="TimeoutException">No bytes were available to read.</exception>
@@ -185,6 +153,7 @@ namespace System.Device.Usb
 
         /// <summary>Reads a number of bytes from the USB device and writes those bytes into a byte array.</summary>
         /// <param name="buffer">The byte array to write the input to.</param>
+        /// <returns>The number of bytes read.</returns>
         /// <exception cref="ObjectDisposedException">This <see cref="UsbStream"/> has been disposed.</exception>
         /// <exception cref="InvalidOperationException">If the USB device is not connected.</exception>
         /// <exception cref="TimeoutException">No bytes were available to read.</exception>
@@ -221,7 +190,7 @@ namespace System.Device.Usb
         /// <exception cref="TimeoutException">The operation did not complete before the time-out period ended.</exception>
         /// <exception cref="ArgumentOutOfRangeException">The <paramref name="offset"/> or <paramref name="count"/> parameters are outside a valid region of the <paramref name="buffer"/> being passed. Either <paramref name="offset"/> or <paramref name="count"/> is less than zero.</exception>
         /// <exception cref="ArgumentException"><paramref name="offset"/> plus <paramref name="count"/> is greater than the length of the <paramref name="buffer"/>.</exception>
-        // developer note: check for "disposed" it's carried out at native code
+        //// developer note: check for "disposed" it's carried out at native code
         [MethodImpl(MethodImplOptions.InternalCall)]
         public extern override void Write(
             byte[] buffer,
@@ -266,9 +235,6 @@ namespace System.Device.Usb
 
         [MethodImpl(MethodImplOptions.InternalCall)]
         private extern int NativeOpen(string classId, string name);
-
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        internal extern void NativeReceivedBytesThreshold(int value);
 
         #endregion
     }
