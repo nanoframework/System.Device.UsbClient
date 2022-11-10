@@ -25,8 +25,6 @@ namespace System.Device.Usb
         private int _writeTimeout = Timeout.Infinite;
         private int _readTimeout = Timeout.Infinite;
 
-        // default threshold is 1
-        private int _receivedBytesThreshold = 1;
         private int _bufferSize = 256;
 
         /// <summary>
@@ -38,16 +36,6 @@ namespace System.Device.Usb
         /// Gets a value indicating whether the USB device is connected or not.
         /// </summary>
         public extern bool IsConnected
-        {
-            [MethodImpl(MethodImplOptions.InternalCall)]
-            get;
-        }
-
-        /// <summary>
-        /// Gets the number of bytes of data in the receive buffer.
-        /// </summary>
-        /// <returns>The number of bytes of data in the receive buffer.</returns>
-        public extern int BytesToRead
         {
             [MethodImpl(MethodImplOptions.InternalCall)]
             get;
@@ -119,23 +107,6 @@ namespace System.Device.Usb
         }
 
         /// <summary>
-        /// Gets or sets the number of bytes in the internal input buffer before a <see cref="DataReceived"/> event occurs.
-        /// </summary>
-        /// <value>The number of bytes in the internal input buffer before a <see cref="DataReceived"/> event is fired. The default is 1.</value>
-        /// <exception cref="ArgumentOutOfRangeException">The <see cref="ReceivedBytesThreshold"/> value is less than or equal
-        /// to zero.</exception>
-        public int ReceivedBytesThreshold
-        {
-            get => _receivedBytesThreshold;
-
-            set
-            {
-                // backing field will be updated in native code
-                NativeReceivedBytesThreshold(value);
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the number of milliseconds before a time-out occurs when a write operation does not finish.
         /// </summary>
         /// <exception cref="IOException">If the USB device is not connected.</exception>
@@ -192,8 +163,8 @@ namespace System.Device.Usb
         }
 
         /// <inheritdoc/>
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        public extern override void Flush();
+        /// <exception cref="PlatformNotSupportedException">This is not support in .NET nanoFramework.</exception>
+        public override void Flush() => throw new PlatformNotSupportedException();
 
         /// <summary>Reads a number of bytes from the USB device and writes those bytes into a byte array at the specified offset.</summary>
         /// <param name="buffer">The byte array to write the input to.</param>
@@ -280,21 +251,10 @@ namespace System.Device.Usb
 
         #region event and delegate related methods
 
-        /// <summary>
-        /// Indicates that data has been received through the <see cref="UsbClient"/> object.
-        /// </summary>
-        public event UsbStreamDataReceivedEventHandler DataReceived;
-
         internal void OnUsbDeviceConnectionChangedInternal(bool isConnected)
         {
             // fire event, if subscribed
             UsbDeviceConnectionChanged?.Invoke(this, new DeviceConnectionEventArgs(isConnected));
-        }
-
-        internal void OnUsbStreamDataReceivedInternal()
-        {
-            // fire event, if subscribed
-            DataReceived?.Invoke(this, new UsbStreamDataReceivedEventArgs());
         }
 
         #endregion

@@ -51,11 +51,6 @@ namespace System.Device.Usb
                         // call internal event handler
                         _usbStream.OnUsbDeviceConnectionChangedInternal(true);
                         break;
-
-                    case UsbEventType.DataAvailable:
-                        // fire event, if subscribed
-                        _usbStream.OnUsbStreamDataReceivedInternal();
-                        break;
                 }
             }
 
