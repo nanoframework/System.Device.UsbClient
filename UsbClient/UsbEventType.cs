@@ -8,6 +8,5 @@ namespace System.Device.Usb
         Invalid = 0,
         DeviceConnected,
         DeviceDisconnected,
-        DataAvailable
     }
 }

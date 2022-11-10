@@ -46,10 +46,8 @@
   <ItemGroup>
     <Compile Include="UsbClient.cs" />
     <Compile Include="UsbDeviceEventListener.cs" />
-    <Compile Include="UsbStreamDataReceivedEventHandler.cs" />
     <Compile Include="UsbStream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UsbStreamDataReceivedEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib">
