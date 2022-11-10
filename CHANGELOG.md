@@ -2,7 +2,15 @@
 
 ## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/System.Device.UsbClient/tree/HEAD)
 
-[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.36...HEAD)
+[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.38...HEAD)
+
+**Implemented enhancements:**
+
+- Remove unused method [\#18](https://github.com/nanoframework/System.Device.UsbClient/pull/18)
+
+## [v1.0.38](https://github.com/nanoframework/System.Device.UsbClient/tree/v1.0.38) (2022-11-10)
+
+[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.36...v1.0.38)
 
 **Documentation and other chores:**
 
