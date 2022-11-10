@@ -2,7 +2,15 @@
 
 ## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/System.Device.UsbClient/tree/HEAD)
 
-[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.34...HEAD)
+[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.36...HEAD)
+
+**Documentation and other chores:**
+
+- Rework UsbStream [\#17](https://github.com/nanoframework/System.Device.UsbClient/pull/17)
+
+## [v1.0.36](https://github.com/nanoframework/System.Device.UsbClient/tree/v1.0.36) (2022-11-08)
+
+[Full Changelog](https://github.com/nanoframework/System.Device.UsbClient/compare/v1.0.34...v1.0.36)
 
 **Implemented enhancements:**
 
