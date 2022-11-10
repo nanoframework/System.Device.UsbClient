@@ -170,6 +170,7 @@ namespace System.Device.Usb
         /// <param name="buffer">The byte array to write the input to.</param>
         /// <param name="offset">The <paramref name="offset"/> in <paramref name="buffer"/> at which to write the bytes.</param>
         /// <param name="count">The maximum number of bytes to read. Fewer bytes are read if <paramref name="count"/> is greater than the number of bytes in the input buffer.</param>
+        /// <returns>The number of bytes read.</returns>
         /// <exception cref="ObjectDisposedException">This <see cref="UsbStream"/> has been disposed.</exception>
         /// <exception cref="InvalidOperationException">If the USB device is not connected.</exception>
         /// <exception cref="TimeoutException">No bytes were available to read.</exception>
@@ -185,6 +186,7 @@ namespace System.Device.Usb
 
         /// <summary>Reads a number of bytes from the USB device and writes those bytes into a byte array.</summary>
         /// <param name="buffer">The byte array to write the input to.</param>
+        /// <returns>The number of bytes read.</returns>
         /// <exception cref="ObjectDisposedException">This <see cref="UsbStream"/> has been disposed.</exception>
         /// <exception cref="InvalidOperationException">If the USB device is not connected.</exception>
         /// <exception cref="TimeoutException">No bytes were available to read.</exception>
@@ -221,7 +223,7 @@ namespace System.Device.Usb
         /// <exception cref="TimeoutException">The operation did not complete before the time-out period ended.</exception>
         /// <exception cref="ArgumentOutOfRangeException">The <paramref name="offset"/> or <paramref name="count"/> parameters are outside a valid region of the <paramref name="buffer"/> being passed. Either <paramref name="offset"/> or <paramref name="count"/> is less than zero.</exception>
         /// <exception cref="ArgumentException"><paramref name="offset"/> plus <paramref name="count"/> is greater than the length of the <paramref name="buffer"/>.</exception>
-        // developer note: check for "disposed" it's carried out at native code
+        //// developer note: check for "disposed" it's carried out at native code
         [MethodImpl(MethodImplOptions.InternalCall)]
         public extern override void Write(
             byte[] buffer,
