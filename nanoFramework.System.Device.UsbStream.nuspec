@@ -20,7 +20,7 @@ This package requires a target with System.Device.UsbStream v$nativeVersion$ (ch
     <tags>nanoFramework C# csharp netmf netnf nanoFramework.Device.UsbClient</tags>
     <dependencies>
       <dependency id="nanoFramework.CoreLibrary" version="1.14.2" />
-      <dependency id="nanoFramework.System.IO.Streams" version="1.1.27" />
+      <dependency id="nanoFramework.System.IO.Streams" version="1.1.38" />
       <dependency id="nanoFramework.Runtime.Events" version="1.11.6" />
     </dependencies>
   </metadata>
