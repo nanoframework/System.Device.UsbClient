@@ -42,6 +42,23 @@ var bufer = new byte[] { 1, 2, 3 };
 usbStream.Write(bufer, 0, bufer.Length);
 ```
 
+## Debug hints
+
+USB can be hard. Be prepared for that!
+There are a number of issues that are prone to cause frustration. Follows some (hopefully valuable) advice.
+
+* If you need to debug device enumeration issues and check what's being passed from the devices, install a tool such as [USB Device Tree Viewer](https://www.uwe-sieber.de/usbtreeview_e.html) from Uwe Sieber. With it you can peruse into every bit of detail about USB device, their interfaces, end points, strings, etc.
+
+* Another great tool is [USBDeview](https://www.nirsoft.net/utils/usb_devices_view.html) from NirSoft. This tool lists all USB devices that currently connected to your computer, as well as all USB devices that you previously used. Extended information is displayed for each USB device. It's possible to uninstall/disable and enable USB devices from the tool.
+
+* Windows caches enumeration of USB devices. What's the problem with that? During development, if the enumeration fails at some point, the device most likely will be marked as being enumerated and on the next connection Windows won't do it again. This can cause the enumeration data to be wrong or incomplete. To fix this and truly force the enumeration to happen from scratch, make sure that:
+
+   1. Delete the device from the Device Manager.
+  
+   1. Delete the entry from the enumeration cache in Registry. This lives at `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\usbflags\vvvvpppprrrr`
+
+       Where `vvvv` is the vendor id, `pppp` is the PID and `rrrr` is the device release number.
+
 ## Feedback and documentation
 
 For documentation, providing feedback, issues and finding out how to contribute please refer to the [Home repo](https://github.com/nanoframework/Home).
