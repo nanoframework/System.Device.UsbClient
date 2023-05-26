@@ -51,7 +51,7 @@ steps:
 # build steps only
 - template: azure-pipelines-templates/class-lib-build.yml@templates  
   parameters:
-    sonarCloudProject: 'System.Device.UsbStream'
+    sonarCloudProject: 'nanoframework_System.Device.UsbClient'
     runUnitTests: false
 
 # step from template @ nf-tools repo
