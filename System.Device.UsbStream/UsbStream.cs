@@ -59,8 +59,9 @@ namespace System.Device.Usb
         /// <summary>
         /// Gets or sets the number of milliseconds before a time-out occurs when a read operation does not finish.
         /// </summary>
+        /// <value>The number of milliseconds before a time-out occurs when a read operation does not finish.</value>
         /// <exception cref="IOException">If the USB device is not connected.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">The read time-out value is less than zero and not equal to <see cref="Timeout.Infinite"/>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">The <see cref="ReadTimeout"/> value is less than zero and not equal to <see cref="Timeout.Infinite"/>.</exception>
         public override int ReadTimeout
         {
             get => _readTimeout;
@@ -76,8 +77,9 @@ namespace System.Device.Usb
         /// <summary>
         /// Gets or sets the number of milliseconds before a time-out occurs when a write operation does not finish.
         /// </summary>
+        /// <value>The number of milliseconds before a time-out occurs. The default is <see cref="Timeout.Infinite"/>.</value>
         /// <exception cref="IOException">If the USB device is not connected.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">The read time-out value is less than zero and not equal to <see cref="Timeout.Infinite"/>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">The <see cref="WriteTimeout"/> value is less than zero and not equal to <see cref="Timeout.Infinite"/>.</exception>
         public override int WriteTimeout
         {
             get => _writeTimeout;
