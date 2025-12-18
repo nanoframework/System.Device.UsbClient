@@ -171,7 +171,7 @@ namespace System.Device.Usb
 
         /// <inheritdoc/>
         /// <exception cref="NotImplementedException"></exception>
-        public override int Read(SpanByte buffer) => throw new NotImplementedException();
+        public override int Read(Span<byte> buffer) => throw new NotImplementedException();
 
         /// <inheritdoc/>
         /// <exception cref="PlatformNotSupportedException">This is not support in .NET nanoFramework.</exception>

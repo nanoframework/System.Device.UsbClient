@@ -53,6 +53,7 @@ steps:
   parameters:
     sonarCloudProject: 'nanoframework_System.Device.UsbClient'
     runUnitTests: false
+    usePreviewBuild: true
 
 # step from template @ nf-tools repo
 # report error
