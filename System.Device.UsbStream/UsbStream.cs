@@ -10,7 +10,7 @@ namespace System.Device.Usb
     /// <summary>
     /// Initializes a new instance of the <see cref="UsbStream"/> class.
     /// </summary>
-    public sealed class UsbStream : System.IO.Stream
+    public sealed class UsbStream : Stream
     {
         private static bool _streamCreated = false;
 
@@ -208,6 +208,22 @@ namespace System.Device.Usb
         {
             Write(
                 buffer,
+                0,
+                buffer.Length);
+        }
+
+
+        /// <summary>
+        /// Writes the number of bytes in <paramref name="buffer"/> parameter to the USB device using data from a buffer.
+        /// </summary>
+        /// <param name="buffer">The byte span that contains the data to write to the USB device.</param>
+        /// <exception cref="ObjectDisposedException">This <see cref="UsbStream"/> has been disposed.</exception>
+        /// <exception cref="InvalidOperationException">If the USB device is not connected.</exception>
+        /// <exception cref="TimeoutException">The operation did not complete before the time-out period ended.</exception>
+        public override void Write(ReadOnlySpan<byte> buffer)
+        {
+            Write(
+                buffer.ToArray(),
                 0,
                 buffer.Length);
         }
