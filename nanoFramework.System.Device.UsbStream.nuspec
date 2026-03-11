@@ -19,20 +19,18 @@
 This package requires a target with System.Device.UsbStream v$nativeVersion$ (checksum $checksum$).</description>
     <tags>nanoFramework C# csharp netmf netnf nanoFramework.Device.UsbClient</tags>
     <dependencies>
-      <dependency id="nanoFramework.CoreLibrary" version="2.0.0-preview.35" />
-      <dependency id="nanoFramework.System.IO.Streams" version="2.0.0-preview.10" />
-      <dependency id="nanoFramework.Runtime.Events" version="2.0.0-preview.8" />
+      <group targetFramework=".NETnanoFramework1.0">
+        <dependency id="nanoFramework.CoreLibrary" version="2.0.0-preview.35" />
+        <dependency id="nanoFramework.System.IO.Streams" version="2.0.0-preview.10" />
+        <dependency id="nanoFramework.Runtime.Events" version="2.0.0-preview.8" />
+      </group>
     </dependencies>
   </metadata>
   <files>
-    <file src="System.Device.UsbStream\bin\Release\System.Device.UsbStream.dll" target="lib\System.Device.UsbStream.dll" />
-    <file src="System.Device.UsbStream\bin\Release\System.Device.UsbStream.pdb" target="lib\System.Device.UsbStream.pdb" />
-    <file src="System.Device.UsbStream\bin\Release\System.Device.UsbStream.pdbx" target="lib\System.Device.UsbStream.pdbx" />
-    <file src="System.Device.UsbStream\bin\Release\System.Device.UsbStream.pe" target="lib\System.Device.UsbStream.pe" />
-    <file src="System.Device.UsbStream\bin\Release\System.Device.UsbStream.xml" target="lib\System.Device.UsbStream.xml" />
-    <file src="assets\readme.txt" target="" />
     <file src="README.md" target="docs\" />
-    <file src="assets\nf-logo.png" target="images" />
+    <file src="assets\readme.txt" target="" />
     <file src="LICENSE.md" target="" />
+    <file src="assets\nf-logo.png" target="images" />
+    <file src="System.Device.UsbStream\bin\Release\System.Device.UsbStream.*" target="lib\netnano1.0" />
   </files>
 </package>
